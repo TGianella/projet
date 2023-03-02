@@ -26,6 +26,10 @@ const arnButton = document.querySelector("#arn");
 const arnMessage = document.querySelector("#arnMessage");
 arnButton.addEventListener("click", arn);
 
+const botButton = document.querySelector("#bot");
+const botMessage = document.querySelector("#botMessage");
+botButton.addEventListener("click", bot);
+
 const entrepreneurs = [
   { first: 'Steve', last: 'Jobs', year: 1955 },
   { first: 'Oprah', last: 'Winfrey', year: 1954 },
@@ -230,7 +234,28 @@ function arn() {
   arnMessage.append(res);
 }
 
+function bot() {
+  
+  botMessage.textContent = '';
 
+  let input = window.prompt("Que veux-tu dire à Acné-bot ?");
+  let answer;
+
+  if (input === null || input === '') {
+    answer = "T'es en PLS ?"
+  } else if (input.trim().endsWith('?')) {
+    answer = "Ouais Ouais...";
+  } else if (input === input.toUpperCase()) {
+    answer = "Pwa, calme-toi...";
+  } else if (input.toLowerCase().includes('fortnite')) {
+    answer = "On s'fait une partie en soum-soum ?";
+  } else {
+    answer = "balek."
+  }
+
+  botMessage.append(answer);
+
+}
 
 
 
