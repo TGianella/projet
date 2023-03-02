@@ -22,6 +22,10 @@ const libraryButton = document.querySelector("#library");
 const libraryMessage = document.querySelector("#libraryMessage");
 libraryButton.addEventListener("click", library);
 
+const arnButton = document.querySelector("#arn");
+const arnMessage = document.querySelector("#arnMessage");
+arnButton.addEventListener("click", arn);
+
 const entrepreneurs = [
   { first: 'Steve', last: 'Jobs', year: 1955 },
   { first: 'Oprah', last: 'Winfrey', year: 1954 },
@@ -57,7 +61,6 @@ const books = [
   { title: 'Voyage au centre de la Terre', id: 4656388, rented: 38 },
   { title: 'Guerre et Paix', id: 748147, rented: 19 }
 ];
-
 
 
 function helloWorld () {
@@ -152,6 +155,7 @@ function startup() {
 function library() {
 
   libraryMessage.textContent = '';
+
   let allBorrowed = !books.some((book) => book.rented === 0);
   let mostBorrowedValue = Math.max(...books.map(book => book.rented));
   let mostBorrowed = books.find(book => book.rented === mostBorrowedValue);
@@ -202,5 +206,87 @@ function library() {
     });
   }
 }
+
+function arn() {
+  
+  arnMessage.textContent = '';
+
+  let arn = window.prompt("Quel est le code d'ARN à traduire ?");
+
+  let res;
+  if (arn === null || arn.length % 3 !== 0 || arn.match(/[^AUGC]/)) {
+    res = "Ce n'est pas un code valable";
+  } else {
+    arn = arn.replace(/(.{3})/g, "$1-");
+    res = arn.replaceAll(/(UCU|UCC|UCA|UCG|UCG|AGU|AGC)/g, "Sérine")
+      .replaceAll(/(CCU|CCC|CCA|CCG)/g, "Proline")
+      .replaceAll(/(UUA|UUG)/g, "Leucine")
+      .replaceAll(/(UUU|UUC)/g, "Phénylanine")
+      .replaceAll(/(CGU|CGC|CGA|CGG|AGA|AGG)/g, "Arginine")
+      .replaceAll(/(UAU|UAC)/g, "Tyrosine")
+      .slice(0, -1);
+  }
+
+  arnMessage.append(res);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
